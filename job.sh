@@ -7,6 +7,9 @@
 # Exit immediately if a command exits with a non-zero exit status
 set -e
 
+# Dump environment variables
+env
+
 # Load dependencies
 # https://docs.hpc.shef.ac.uk/en/latest/bessemer/software/apps/python.html
 module load Anaconda3/2019.07
@@ -19,8 +22,8 @@ module load Java/11
 export JAVA_OPTS=$JAVA_OPTS" -Dio.netty.tryReflectionSetAccessible=true"
 
 # Show Java context
-echo $JAVA_HOME
-echo $JAVA_OPTS
+echo "$JAVA_HOME"
+echo "$JAVA_OPTS"
 java -version
 
 # Set environment variables
