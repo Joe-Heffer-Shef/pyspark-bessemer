@@ -1,5 +1,6 @@
 #!/bin/bash
 #SBATCH --comment="PySpark test - Bessemer Slurm job script"
+#SBATCH --ntasks-per-node=4
 #SBATCH --time=00:05:00
 #SBATCH --mem=1G
 

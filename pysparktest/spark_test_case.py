@@ -16,17 +16,21 @@ INTERESTING_CONFIG_KEYS = {
 
 LOG_LEVEL = os.getenv('LOG_LEVEL', 'WARNING')
 
+# Create Spark session (only one can exist per process) as global variable
+# to be shared between all unit tests
+# https://stackoverflow.com/a/41513805
+SPARK_SESSION = pyspark.sql.SparkSession.builder.appName(
+    __name__).getOrCreate()
+
 
 class SparkTestCase(unittest.TestCase):
+    session = SPARK_SESSION
+
     def setUp(self):
         # Configure logging
         self.logger = logging.getLogger(__name__)
         logging.basicConfig(level=LOG_LEVEL)
 
-        # Create Spark session (only one can exist per process)
-        # https://stackoverflow.com/a/41513805
-        self.session = pyspark.sql.SparkSession.builder.appName(
-            __name__).getOrCreate()
         self.session.sparkContext.setLogLevel(LOG_LEVEL)
 
         # Log config values
