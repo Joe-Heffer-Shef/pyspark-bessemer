@@ -27,13 +27,6 @@ conda env export
 python -c "import pyspark.sql; print('PySpark version', pyspark.sql.SparkSession.builder.getOrCreate().version)"
 
 # Run a simple PySpark job
-# https://spark.apache.org/docs/latest/api/python/getting_started/quickstart.html
-python -c "import pyspark.sql; spark = SparkSession.builder.getOrCreate();\
-df = spark.createDataFrame([\
-    (1, 2., 'string1', date(2000, 1, 1), datetime(2000, 1, 1, 12, 0)),\
-    (2, 3., 'string2', date(2000, 2, 1), datetime(2000, 1, 2, 12, 0)),\
-    (3, 4., 'string3', date(2000, 3, 1), datetime(2000, 1, 3, 12, 0))\
-], schema='a long, b double, c string, d date, e timestamp');\
-print(df);"
+python -m pysparktest
 
 # TODO Jupyter notebook
