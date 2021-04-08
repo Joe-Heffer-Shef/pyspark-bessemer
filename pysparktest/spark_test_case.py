@@ -13,6 +13,8 @@ LOG_LEVEL = os.getenv('LOG_LEVEL', 'WARNING')
 SPARK_SESSION = pyspark.sql.SparkSession.builder.appName(
     __name__).getOrCreate()
 
+SPARK_SESSION.sparkContext.setLogLevel(LOG_LEVEL)
+
 
 class SparkTestCase(unittest.TestCase):
     session = SPARK_SESSION
@@ -21,8 +23,6 @@ class SparkTestCase(unittest.TestCase):
         # Configure logging
         self.logger = logging.getLogger(__name__)
         logging.basicConfig(level=LOG_LEVEL)
-
-        self.session.sparkContext.setLogLevel(LOG_LEVEL)
 
         # Log configuration
         for key, value in self.session.sparkContext.getConf().getAll():
