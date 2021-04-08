@@ -22,6 +22,13 @@ echo $JAVA_HOME
 echo $JAVA_OPTS
 java -version
 
+# Set environment variables
+export LOG_LEVEL=DEBUG
+
+# Set Spark options
+# Use scratch storage for temporary files
+export SPARK_LOCAL_DIRS=$TMPDIR
+
 # Activate conda environment
 # https://docs.hpc.shef.ac.uk/en/latest/bessemer/software/apps/python.html#using-conda-environments
 source activate pyspark_env
