@@ -15,7 +15,7 @@ class DataFrameTestCase(SparkTestCase):
         super().setUp()
 
         # Create data frame
-        self.df = self.sc.createDataFrame([
+        self.df = self.session.createDataFrame([
             (1, 2., 'string1', datetime.date(2000, 1, 1), datetime.datetime(
                 2000, 1, 1, 12, 0)),
             (2, 3., 'string2', datetime.date(2000, 2, 1),

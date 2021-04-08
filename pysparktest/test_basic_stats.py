@@ -17,5 +17,5 @@ class DataFrameTestCase(SparkTestCase):
                 (Vectors.dense([4.0, 5.0, 0.0, 3.0]),),
                 (Vectors.dense([6.0, 7.0, 0.0, 8.0]),),
                 (Vectors.sparse(4, [(0, 9.0), (3, 1.0)]),)]
-        self.df = self.sc.createDataFrame(data, ["features"])
+        self.df = self.session.createDataFrame(data, ["features"])
 
