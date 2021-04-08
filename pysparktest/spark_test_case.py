@@ -6,6 +6,7 @@ import pyspark.sql
 from pyspark.sql.types import StructType
 
 LOG_LEVEL = os.getenv('LOG_LEVEL', 'WARNING')
+LOGGER = logging.getLogger(__name__)
 
 # Create Spark session (only one can exist per process) as global variable
 # to be shared between all unit tests
@@ -17,15 +18,13 @@ SPARK_SESSION.sparkContext.setLogLevel(LOG_LEVEL)
 
 # Log configuration
 for key, value in SPARK_SESSION.sparkContext.getConf().getAll():
-    SPARK_SESSION.logger.info("%s=%s", key, value)
+    LOGGER.info("%s=%s", key, value)
 
 
 class SparkTestCase(unittest.TestCase):
     session = SPARK_SESSION
 
     def setUp(self):
-        # Configure logging
-        self.logger = logging.getLogger(__name__)
         logging.basicConfig(level=LOG_LEVEL)
 
         self.df = self.session.createDataFrame(data=list(),
