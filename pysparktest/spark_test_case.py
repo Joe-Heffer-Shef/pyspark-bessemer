@@ -15,6 +15,10 @@ SPARK_SESSION = pyspark.sql.SparkSession.builder.appName(
 
 SPARK_SESSION.sparkContext.setLogLevel(LOG_LEVEL)
 
+# Log configuration
+for key, value in SPARK_SESSION.sparkContext.getConf().getAll():
+    SPARK_SESSION.logger.info("%s=%s", key, value)
+
 
 class SparkTestCase(unittest.TestCase):
     session = SPARK_SESSION
@@ -23,10 +27,6 @@ class SparkTestCase(unittest.TestCase):
         # Configure logging
         self.logger = logging.getLogger(__name__)
         logging.basicConfig(level=LOG_LEVEL)
-
-        # Log configuration
-        for key, value in self.session.sparkContext.getConf().getAll():
-            self.logger.info("%s=%s", key, value)
 
         self.df = self.session.createDataFrame(data=list(),
                                                schema=StructType(list()))

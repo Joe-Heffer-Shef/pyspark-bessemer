@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH --comment="PySpark test - Bessemer Slurm job script"
-#SBATCH --ntasks-per-node=4
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
 #SBATCH --time=00:05:00
 #SBATCH --mem=1G
 
@@ -41,8 +42,9 @@ source activate pyspark_env
 conda --version
 python --version
 
-# Show available core count
-python -c "import os; print('CPU count:', os.cpu_count())"
+# Show available cores
+python -c "import os; print('Total CPU count:', os.cpu_count())\
+print('Number of CPUS on the allocated node.:', os.getenv['SLURM_CPUS_ON_NODE'])"
 
 # Run PySpark tests
 python -m unittest discover --failfast --verbose pysparktest
