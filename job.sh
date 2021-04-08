@@ -3,7 +3,7 @@
 #SBATCH --time=00:05:00
 #SBATCH --mem=1G
 
-# Exit immediately if a command exits with a non-zero exit status.
+# Exit immediately if a command exits with a non-zero exit status
 set -e
 
 # Load dependencies
@@ -29,5 +29,5 @@ source activate pyspark_env
 conda --version
 python --version
 
-# Run a simple PySpark job
-python -m unittest discover --failfast pysparktest
+# Run PySpark tests
+python -m unittest discover --failfast --verbose pysparktest
