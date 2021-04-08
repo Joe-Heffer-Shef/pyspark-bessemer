@@ -14,6 +14,12 @@ LOG_LEVEL = os.getenv('LOG_LEVEL', 'WARNING')
 LOGGER = logging.getLogger(__name__)
 
 
+def run_tests(session: pyspark.sql.SparkSession):
+    pysparktest.test_data_frame.test_data_frame(session)
+    pysparktest.test_basic_stats.test_correlation(session)
+    pysparktest.test_basic_stats.test_chi_square(session)
+
+
 def main():
     # Create Spark session (only one can exist per process) as global variable
     # to be shared between all unit tests
@@ -26,10 +32,7 @@ def main():
         for key, value in session.sparkContext.getConf().getAll():
             LOGGER.info("%s=%s", key, value)
 
-    # Run tests
-    pysparktest.test_data_frame.test_data_frame(session)
-    pysparktest.test_basic_stats.test_correlation(session)
-    pysparktest.test_basic_stats.test_chi_square(session)
+        run_tests(session)
 
 
 if __name__ == '__main__':
