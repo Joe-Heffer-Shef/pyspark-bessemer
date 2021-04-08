@@ -6,6 +6,8 @@ https://spark.apache.org/docs/latest/api/python/getting_started/quickstart.html
 """
 
 import datetime
+import random
+import uuid
 
 from pysparktest.spark_test_case import SparkTestCase
 
@@ -16,10 +18,9 @@ class DataFrameTestCase(SparkTestCase):
 
         # Create data frame
         self.df = self.session.createDataFrame([
-            (1, 2., 'string1', datetime.date(2000, 1, 1), datetime.datetime(
-                2000, 1, 1, 12, 0)),
-            (2, 3., 'string2', datetime.date(2000, 2, 1),
-             datetime.datetime(2000, 1, 2, 12, 0)),
-            (3, 4., 'string3', datetime.date(2000, 3, 1),
-             datetime.datetime(2000, 1, 3, 12, 0))
-        ], schema='a long, b double, c string, d date, e timestamp')
+            # Generate some random data
+            (i, random.random(), uuid.uuid4().hex,
+             datetime.date(1970, 1, 1) + datetime.timedelta(days=i),
+             datetime.datetime(1970, 1, 1, 12) + datetime.timedelta(hours=i))
+            for i in range(1000)],
+            schema='a long, b double, c string, d date, e timestamp')

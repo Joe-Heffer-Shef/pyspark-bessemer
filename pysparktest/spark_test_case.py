@@ -14,16 +14,20 @@ INTERESTING_CONFIG_KEYS = {
     'spark.cores.max',
 }
 
+LOG_LEVEL = os.getenv('LOG_LEVEL', 'WARNING')
+
 
 class SparkTestCase(unittest.TestCase):
     def setUp(self):
         # Configure logging
         self.logger = logging.getLogger(__name__)
-        logging.basicConfig(level=os.getenv('LOG_LEVEL', 'WARNING'))
+        logging.basicConfig(level=LOG_LEVEL)
 
         # Create Spark session (only one can exist per process)
         # https://stackoverflow.com/a/41513805
-        self.session = pyspark.sql.SparkSession.builder.getOrCreate()
+        self.session = pyspark.sql.SparkSession.builder.appName(
+            __name__).getOrCreate()
+        self.session.sparkContext.setLogLevel(LOG_LEVEL)
 
         # Log config values
         for key in INTERESTING_CONFIG_KEYS:
