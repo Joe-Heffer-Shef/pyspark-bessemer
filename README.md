@@ -2,6 +2,8 @@
 
 This is a template for using [PySpark](https://spark.apache.org/docs/latest/api/python/index.html), the interface for Apache Spark in Python, on the [Bessemer](https://docs.hpc.shef.ac.uk/en/latest/bessemer/index.html) High-Performance Computing cluster at [The University of Sheffield](https://www.sheffield.ac.uk/).
 
+This example is designed to run a Spark instance in standalone mode on a single node and use the specified number of cores.
+
 See also: [Spark on ShARC](https://docs.hpc.shef.ac.uk/en/latest/sharc/software/apps/spark.html)
 
 # Installation

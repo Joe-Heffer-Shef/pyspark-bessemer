@@ -5,10 +5,13 @@ import os
 import pyspark.sql
 from pyspark.sql.types import StructType
 
+# Log these config options
+# https://spark.apache.org/docs/latest/configuration.html
 INTERESTING_CONFIG_KEYS = {
     'spark.local.dir',
     'spark.executor.cores',
     'spark.default.parallelism',
+    'spark.cores.max',
 }
 
 
@@ -24,7 +27,7 @@ class SparkTestCase(unittest.TestCase):
 
         # Log config values
         for key in INTERESTING_CONFIG_KEYS:
-            self.logger.debug("%s=%s", key, self.session.conf.get(key))
+            self.logger.info("%s=%s", key, self.session.conf.get(key))
 
         self.df = self.session.createDataFrame(data=list(),
                                                schema=StructType(list()))

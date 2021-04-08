@@ -23,7 +23,7 @@ echo $JAVA_OPTS
 java -version
 
 # Set environment variables
-export LOG_LEVEL=DEBUG
+export LOG_LEVEL=INFO
 
 # Set Spark options
 # Use scratch storage for temporary files
@@ -36,6 +36,9 @@ source activate pyspark_env
 # Show package versions
 conda --version
 python --version
+
+# Show available core count
+python -c "import os; print('CPU count:', os.cpu_count())"
 
 # Run PySpark tests
 python -m unittest discover --failfast --verbose pysparktest
