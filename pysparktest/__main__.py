@@ -9,6 +9,7 @@ import pyspark.sql
 
 import pysparktest.test_data_frame
 import pysparktest.test_basic_stats
+import pysparktest.test_pandas
 
 LOG_LEVEL = os.getenv('LOG_LEVEL', 'WARNING')
 LOGGER = logging.getLogger(__name__)
@@ -18,6 +19,7 @@ def run_tests(session: pyspark.sql.SparkSession):
     pysparktest.test_data_frame.test_data_frame(session)
     pysparktest.test_basic_stats.test_correlation(session)
     pysparktest.test_basic_stats.test_chi_square(session)
+    pysparktest.test_pandas.test_pandas(session)
 
 
 def main():

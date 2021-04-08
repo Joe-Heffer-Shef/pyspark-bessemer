@@ -8,9 +8,6 @@
 # Exit immediately if a command exits with a non-zero exit status
 set -e
 
-# Dump environment variables
-env
-
 # Load dependencies
 # https://docs.hpc.shef.ac.uk/en/latest/bessemer/software/apps/python.html
 module load Anaconda3/2019.07
