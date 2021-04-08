@@ -14,6 +14,10 @@ set -e
 module load Anaconda3/2019.07
 module load Java/11
 
+# Set Java options
+# https://spark.apache.org/docs/latest/api/python/getting_started/install.html#dependencies
+export JAVA_OPTS=$JAVA_OPTS:" -Dio.netty.tryReflectionSetAccessible=true"
+
 # Show Java context
 echo $JAVA_HOME
 echo $JAVA_OPTS
