@@ -5,15 +5,6 @@ import os
 import pyspark.sql
 from pyspark.sql.types import StructType
 
-# Log these config options
-# https://spark.apache.org/docs/latest/configuration.html
-INTERESTING_CONFIG_KEYS = {
-    'spark.local.dir',
-    'spark.executor.cores',
-    'spark.default.parallelism',
-    'spark.cores.max',
-}
-
 LOG_LEVEL = os.getenv('LOG_LEVEL', 'WARNING')
 
 # Create Spark session (only one can exist per process) as global variable
@@ -33,9 +24,9 @@ class SparkTestCase(unittest.TestCase):
 
         self.session.sparkContext.setLogLevel(LOG_LEVEL)
 
-        # Log config values
-        for key in INTERESTING_CONFIG_KEYS:
-            self.logger.info("%s=%s", key, self.session.conf.get(key))
+        # Log configuration
+        for key, value in self.session.sparkContext.getConf().getAll():
+            self.logger.info("%s=%s", key, value)
 
         self.df = self.session.createDataFrame(data=list(),
                                                schema=StructType(list()))
