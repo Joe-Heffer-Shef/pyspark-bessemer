@@ -43,4 +43,4 @@ conda --version
 python --version
 
 # Run PySpark tests
-python -m unittest discover --failfast --verbose pysparktest
+python -m pysparktest
