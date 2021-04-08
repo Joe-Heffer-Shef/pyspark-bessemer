@@ -43,7 +43,7 @@ conda --version
 python --version
 
 # Show available cores
-python -c "import os; print('Total CPU count:', os.cpu_count())\
+python -c "import os; print('Total CPU count:', os.cpu_count());\
 print('Number of CPUS on the allocated node.:', os.getenv['SLURM_CPUS_ON_NODE'])"
 
 # Run PySpark tests
