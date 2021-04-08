@@ -12,3 +12,28 @@ Log into Bessemer and set up a Python virtual environment in your home directory
 conda env create --file environment.yaml
 ```
 
+# Usage
+
+Submit the job to the Slurm scheduler:
+
+```bash
+sbatch job.sh
+```
+
+# Common problems
+
+## Illegal reflective access operation
+
+The warnings will be displayed whenever Spark is loaded using Java version >= 9.
+
+```
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.apache.spark.unsafe.Platform (file:/home/cs1jsth/.conda/envs/pyspark_env/lib/python3.8/site-packages/pyspark/jars/spark-unsafe_2.12-3.1.1.jar) to constructor java.nio.DirectByteBuffer(long,int)
+WARNING: Please consider reporting this to the maintainers of org.apache.spark.unsafe.Platform
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+```
+
+## Unable to load native-hadoop library
+
+This warning occurs because Hadoop isn't installed.

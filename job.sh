@@ -3,9 +3,6 @@
 #SBATCH --time=00:05:00
 #SBATCH --mem=1G
 
-# What's this for? This is required for Conda to work properly for some reason
-#export SLURM_EXPORT_ENV=ALL
-
 # Exit immediately if a command exits with a non-zero exit status.
 set -e
 
@@ -31,9 +28,6 @@ source activate pyspark_env
 # Show package versions
 conda --version
 python --version
-python -c "import pyspark.sql; print('PySpark', pyspark.sql.SparkSession.builder.getOrCreate().version)"
 
 # Run a simple PySpark job
-python -m pysparktest
-
-# TODO Jupyter notebook
+python -m unitest --discover --failfast --verbose pysparktest
