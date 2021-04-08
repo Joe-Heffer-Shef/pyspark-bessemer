@@ -4,7 +4,7 @@
 #SBATCH --mem=1G
 
 # What's this for? This is required for Conda to work properly for some reason
-export SLURM_EXPORT_ENV=ALL
+#export SLURM_EXPORT_ENV=ALL
 
 # Exit immediately if a command exits with a non-zero exit status.
 set -e
@@ -15,6 +15,7 @@ module load Anaconda3/2019.07
 module load Java/11
 
 # Set Java options
+# This option is required for PySpark when using Java 11
 # https://spark.apache.org/docs/latest/api/python/getting_started/install.html#dependencies
 export JAVA_OPTS=$JAVA_OPTS" -Dio.netty.tryReflectionSetAccessible=true"
 
