@@ -14,6 +14,9 @@ set -e
 module load Anaconda3/2019.07
 module load Java/11
 
+# Show Java context
+echo $JAVA_HOME
+echo $JAVA_OPTS
 java -version
 
 # Activate conda environment
@@ -23,8 +26,7 @@ source activate pyspark_env
 # Show package versions
 conda --version
 python --version
-conda env export
-python -c "import pyspark.sql; print('PySpark version', pyspark.sql.SparkSession.builder.getOrCreate().version)"
+python -c "import pyspark.sql; print('PySpark', pyspark.sql.SparkSession.builder.getOrCreate().version)"
 
 # Run a simple PySpark job
 python -m pysparktest
