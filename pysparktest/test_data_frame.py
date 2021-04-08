@@ -23,12 +23,3 @@ class DataFrameTestCase(SparkTestCase):
             (3, 4., 'string3', datetime.date(2000, 3, 1),
              datetime.datetime(2000, 1, 3, 12, 0))
         ], schema='a long, b double, c string, d date, e timestamp')
-
-    def test_print_schema(self):
-        self.df.printSchema()
-
-    def test_show(self):
-        self.df.show()
-
-    def test_collect(self):
-        self.df.collect()

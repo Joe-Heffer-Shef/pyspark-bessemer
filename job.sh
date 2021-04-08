@@ -30,4 +30,4 @@ conda --version
 python --version
 
 # Run a simple PySpark job
-python -m unitest --discover --failfast --verbose pysparktest
+python -m unittest --discover --failfast --verbose pysparktest
